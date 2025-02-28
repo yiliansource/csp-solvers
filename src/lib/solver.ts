@@ -11,7 +11,10 @@ export class CSPSolver<V, D> {
      * @param variables The variables that need to be solved for.
      * @param domains The domains that each variable can take.
      */
-    public constructor(private variables: V[], private domains: Map<V, D[]>) {
+    public constructor(
+        private variables: V[],
+        private domains: Map<V, D[]>,
+    ) {
         for (const variable of this.variables) {
             // Initialize the constraint sets. By default, no variables are constrained.
             this.constraints.set(variable, []);
@@ -67,7 +70,7 @@ export class CSPSolver<V, D> {
 
         const selected = findMinBy(
             this.variables.filter((v) => !assignment.has(v)),
-            (v) => this.domains.get(v)!.length
+            (v) => this.domains.get(v)!.length,
         )!;
 
         for (const value of this.domains.get(selected)!) {

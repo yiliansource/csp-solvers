@@ -35,7 +35,7 @@ export default function RootLayout({
                 className={clsx(
                     ...[geistSans, geistMono, lexend].map((f) => f.variable),
                     "antialiased",
-                    "flex flex-col min-h-screen"
+                    "flex flex-col min-h-screen",
                 )}
             >
                 <header className="h-48 mb-2 mx-auto max-w-4xl w-full select-none">

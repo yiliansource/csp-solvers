@@ -5,7 +5,7 @@ import { solve } from "@/problems/skyscrapers";
 import { produce } from "immer";
 import { useState } from "react";
 
-export default function () {
+export default function SkyscrapersPage() {
     const size = 4;
     const [heights, setHeights] = useState<(number | null)[]>(range(0, size ** 2).map((i) => null));
     const [clues, setClues] = useState<(number | null)[]>(range(0, size * 4).map((i) => null));
@@ -31,7 +31,7 @@ export default function () {
         setClues(
             produce((draft) => {
                 draft[i] = number;
-            })
+            }),
         );
     };
 
@@ -40,7 +40,7 @@ export default function () {
         setIsSolving(true);
         const solution = solve(
             size,
-            clues.map((c) => c ?? 0)
+            clues.map((c) => c ?? 0),
         );
         if (solution) {
             setHeights(solution);
