@@ -1,4 +1,4 @@
-import Image from "next/image";
+import * as motion from "motion/react-client";
 import Link from "next/link";
 
 interface CSPProperties {
@@ -16,7 +16,7 @@ const csps: CSPProperties[] = [
 export default function Home() {
     return (
         <>
-            <div className="mb-12 text-lg *:mb-2 text-justify">
+            <div className="mb-12 text-lg *:mb-4 text-justify">
                 <p className="font-light">
                     <b className="font-bold">Constraint satisfaction problems (CSPs)</b> are mathematical questions
                     defined as a set of objects whose state must satisfy a number of constraints or limitations. CSPs
@@ -31,13 +31,15 @@ export default function Home() {
             </div>
             <div className="flex flex-row gap-2">
                 {csps.map((csp) => (
-                    <div key={csp.identifier}>
-                        <Link href={`/problems/${csp.identifier}`}>
-                            <div className="px-12 py-6 bg-black/20 rounded-lg">
-                                <p className="text-2xl font-bold">{csp.title}</p>
-                            </div>
-                        </Link>
-                    </div>
+                    <motion.div key={csp.identifier} initial={{ scale: 0 }} animate={{ scale: 1 }}>
+                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                            <Link href={`/problems/${csp.identifier}`}>
+                                <div className="px-12 py-6 bg-background-muted rounded-lg">
+                                    <p className="text-2xl font-bold">{csp.title}</p>
+                                </div>
+                            </Link>
+                        </motion.div>
+                    </motion.div>
                 ))}
             </div>
         </>

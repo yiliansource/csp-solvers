@@ -3,11 +3,20 @@
 @theme {
     --font-sans: var(--font-geist-sans);
     --font-mono: var(--font-geist-mono);
+
+    --color-background: var(--background);
+    --color-background-muted: var(--background-muted);
 }
 
 :root {
     --background: #ee5050;
+    --background-muted: #cf3d3d;
     --foreground: #ffffff;
+}
+
+::selection {
+    background: var(--background-muted);
+    color: var(--foreground);
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -21,4 +30,17 @@ body {
     color: var(--foreground);
     background: var(--background);
     font-family: Lexend, Helvetica, sans-serif;
+}
+
+input[type="range"] {
+    @apply appearance-none h-4 w-full bg-background-muted rounded-md outline-none;
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+input[type="range"]::-webkit-slider-thumb {
+    @apply appearance-none cursor-pointer w-4 h-6 bg-white rounded-md;
+}
+
+input[type="range"]::-moz-range-thumb {
+    @apply cursor-pointer w-4 h-6 bg-white rounded-md;
 }

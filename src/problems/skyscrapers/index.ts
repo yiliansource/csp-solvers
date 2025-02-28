@@ -1,10 +1,10 @@
 import { hasDuplicates, range } from "@/lib/collections";
 import {
-    getPlusIndices,
-    getGridCursorFromEdgeIndex,
-    getRowIndices,
     getColumnIndices,
     getEdgeIndices,
+    getGridCursorFromEdgeIndex,
+    getPlusIndices,
+    getRowIndices,
 } from "@/lib/grid";
 import { CSPSolver } from "@/lib/solver";
 
