@@ -11,6 +11,10 @@ const csps: CSPProperties[] = [
         identifier: "skyscrapers",
         title: "Skyscrapers",
     },
+    {
+        identifier: "sudoku",
+        title: "Sudoku",
+    },
 ];
 
 export default function Home() {
@@ -29,7 +33,7 @@ export default function Home() {
                     in the browser. The source code is available on GitHub.
                 </p>
             </div>
-            <div className="flex flex-row gap-2">
+            <div className="flex flex-row gap-4">
                 {csps.map((csp) => (
                     <motion.div key={csp.identifier} initial={{ scale: 0 }} animate={{ scale: 1 }}>
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

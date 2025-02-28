@@ -7,6 +7,7 @@ import { AnimatePresence } from "motion/react";
 import * as motion from "motion/react-client";
 import * as party from "party-js";
 import { useEffect, useState } from "react";
+import { FaChevronDown } from "react-icons/fa";
 
 export default function SkyscrapersPage() {
     const [size, setSize] = useState(4);
@@ -80,9 +81,12 @@ export default function SkyscrapersPage() {
 
     return (
         <>
+            <div className="select-none absolute right-0 -top-26">
+                <h1 className="text-3xl font-bold">Skyscrapers</h1>
+            </div>
             <div className="relative flex flex-col">
                 <motion.div
-                    className="mb-6 mx-auto flex flex-row items-center gap-6"
+                    className="mb-8 mx-auto flex flex-row items-center gap-6"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: 0.45 }}
@@ -148,11 +152,19 @@ export default function SkyscrapersPage() {
                             transition={{ delay: i * 0.04 }}
                         >
                             <input
-                                className="m-auto text-2xl font-bold w-full h-full text-center outline-none rounded-lg border-2 border-transparent focus:border-white transition-colors"
+                                className="m-auto text-2xl font-bold w-8 h-8 text-center outline-none rounded-lg border-2 border-transparent focus:border-white transition-colors"
                                 value={clues[i] ?? "-"}
                                 onChange={(e) => handleHeightChange(i, e.target.value)}
                                 tabIndex={1 + i}
                             />
+                            <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+                                <div
+                                    className="absolute w-4 h-4 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-background-muted"
+                                    style={{ transform: `rotate(${Math.floor(i / size) * 90}deg) translateY(26px)` }}
+                                >
+                                    <FaChevronDown className="scale-125" />
+                                </div>
+                            </div>
                         </motion.div>
                     ))}
                 </motion.div>

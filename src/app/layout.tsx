@@ -56,12 +56,13 @@ export default function RootLayout({
                         <div></div>
                     </div>
                 </header>
-                <main className="grow mb-8 mx-auto max-w-4xl w-full">
+                <main className="relative flex flex-col grow mb-8 mx-auto max-w-4xl w-full">
                     <LayoutTransition
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
+                        className="flex flex-col grow h-full"
                     >
                         {children}
                     </LayoutTransition>
