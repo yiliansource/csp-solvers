@@ -8,6 +8,13 @@ import {
 } from "@/lib/grid";
 import { CSPSolver } from "@/lib/solver";
 
+import { ProblemMetadata } from "../problem";
+
+export const metadata: ProblemMetadata = {
+    title: "Skyscrapers",
+    key: "skyscrapers",
+};
+
 /**
  * Attempts to solve a skyscraper grid of size NxN, with the specified edge clues (clockwise).
  * Returns an array of heights, arranged in a grid, or null if no solution could be found.

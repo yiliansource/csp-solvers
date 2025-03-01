@@ -1,6 +1,8 @@
 "use client";
 
 import { range } from "@/lib/collections";
+import { ProblemHeading } from "@/lib/problem-heading";
+import { useWindowWidth } from "@/lib/use-window-width";
 import { solve } from "@/problems/skyscrapers";
 import { produce } from "immer";
 import { AnimatePresence } from "motion/react";
@@ -14,6 +16,7 @@ export default function SkyscrapersPage() {
     const [heights, setHeights] = useState<(number | null)[]>([]);
     const [clues, setClues] = useState<(number | null)[]>([]);
     const [isSolving, setIsSolving] = useState(false);
+    const windowWidth = useWindowWidth();
 
     useEffect(() => {
         setHeights(Array.from<number | null>({ length: size ** 2 }).fill(null));
@@ -24,7 +27,8 @@ export default function SkyscrapersPage() {
         setClues([2, 1, 2, 2, 2, 3, 2, 1, 1, 2, 4, 3, 3, 2, 1, 2]);
     }, []);
 
-    const cellSize = "64px";
+    const maxSize = windowWidth < 640 ? 5 : 7;
+    const cellSize = windowWidth < 640 ? "40px" : "64px";
     const clueIndices = [
         ...range(0, size).map((i) => i + 1),
         ...range(0, size).map((i) => (i + 2) * (size + 2) - 1),
@@ -81,9 +85,7 @@ export default function SkyscrapersPage() {
 
     return (
         <>
-            <div className="select-none absolute right-0 -top-26">
-                <h1 className="text-3xl font-bold">Skyscrapers</h1>
-            </div>
+            <ProblemHeading title="Skyscrapers" />
             <div className="relative flex flex-col">
                 <motion.div
                     className="mb-8 mx-auto flex flex-row items-center gap-6"
@@ -96,14 +98,14 @@ export default function SkyscrapersPage() {
                     <input
                         className=""
                         type="range"
-                        min="1"
-                        max="7"
+                        min={1}
+                        max={maxSize}
                         value={size}
                         onChange={(e) => setSize(parseInt(e.target.value))}
                     />
                 </motion.div>
                 <motion.div
-                    className="mb-10 mx-auto grid gap-3 select-none"
+                    className="mb-10 mx-auto grid gap-2 lg:gap-3 select-none"
                     style={{
                         gridTemplateRows: `repeat(${size + 2}, ${cellSize})`,
                         gridTemplateColumns: `repeat(${size + 2}, ${cellSize})`,
@@ -127,7 +129,7 @@ export default function SkyscrapersPage() {
                                 {!!height && (
                                     <motion.p
                                         key={height}
-                                        className="m-auto text-2xl font-bold"
+                                        className="m-auto text-xl lg:text-2xl font-bold"
                                         initial={{ scale: 0 }}
                                         animate={{ scale: 1 }}
                                         exit={{ scale: 0 }}
@@ -152,7 +154,7 @@ export default function SkyscrapersPage() {
                             transition={{ delay: i * 0.04 }}
                         >
                             <input
-                                className="m-auto text-2xl font-bold w-8 h-8 text-center outline-none rounded-lg border-2 border-transparent focus:border-white transition-colors"
+                                className="m-auto text-xl lg:text-2xl font-bold w-8 h-8 text-center outline-none rounded-lg border-2 border-transparent focus:border-white transition-colors"
                                 value={clues[i] ?? "-"}
                                 onChange={(e) => handleHeightChange(i, e.target.value)}
                                 tabIndex={1 + i}
@@ -160,9 +162,11 @@ export default function SkyscrapersPage() {
                             <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
                                 <div
                                     className="absolute w-4 h-4 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-background-muted"
-                                    style={{ transform: `rotate(${Math.floor(i / size) * 90}deg) translateY(26px)` }}
+                                    style={{
+                                        transform: `rotate(${Math.floor(i / size) * 90}deg) translateY(${windowWidth < 640 ? 18 : 26}px)`,
+                                    }}
                                 >
-                                    <FaChevronDown className="scale-125" />
+                                    <FaChevronDown className="lg:scale-125" />
                                 </div>
                             </div>
                         </motion.div>

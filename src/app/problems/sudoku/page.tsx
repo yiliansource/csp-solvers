@@ -1,6 +1,8 @@
 "use client";
 
 import { range } from "@/lib/collections";
+import { ProblemHeading } from "@/lib/problem-heading";
+import { useWindowWidth } from "@/lib/use-window-width";
 import { solve } from "@/problems/sudoku";
 import { produce } from "immer";
 import * as motion from "motion/react-client";
@@ -22,6 +24,12 @@ export default function SudokuPage() {
         ].flat(),
     );
     const [isSolving, setIsSolving] = useState(false);
+
+    const windoWidth = useWindowWidth();
+
+    const smallCellGap = windoWidth < 640 ? 2 : 4;
+    const largeCellGap = windoWidth < 640 ? 6 : 10;
+    const cellWidth = windoWidth < 640 ? 36 : 48;
 
     const handleCellChange = (i: number, value: string) => {
         if (value == "") {
@@ -67,18 +75,21 @@ export default function SudokuPage() {
 
     return (
         <>
-            <div className="select-none absolute right-0 -top-26">
-                <h1 className="text-3xl font-bold">Sudoku</h1>
-            </div>
+            <ProblemHeading title="Sudoku" />
             <motion.div
-                className="mb-8 mx-auto grid gap-2"
+                className="mb-8 mx-auto grid"
                 style={{
-                    gridTemplateColumns: "repeat(3, 160px)",
+                    gridTemplateColumns: `repeat(3, ${cellWidth * 3 + smallCellGap * 2}px)`,
+                    gap: largeCellGap + "px",
                 }}
             >
                 {range(0, 3).flatMap((qy) =>
                     range(0, 3).map((qx) => (
-                        <div key={qx + "-" + qy} className="grid grid-cols-3 gap-1 aspect-square">
+                        <div
+                            key={qx + "-" + qy}
+                            className="grid grid-cols-3 aspect-square"
+                            style={{ gap: smallCellGap + "px" }}
+                        >
                             {range(0, 3)
                                 .map((ry) => qy * 3 + ry)
                                 .flatMap((y) =>
@@ -92,16 +103,9 @@ export default function SudokuPage() {
                                                 animate={{ scale: 1 }}
                                                 transition={{ delay: 0.03 * (qx * 3 + x + (qy * 3 + y)) }}
                                             >
-                                                {/* <p>
-                                                    {Math.floor((y * 9 + x) / 9 / 3)},{" "}
-                                                    {Math.floor(((y * 9 + x) % 9) / 3)}
-                                                </p>
-                                                <p>
-                                                    {x}, {y}
-                                                </p> */}
                                                 <input
                                                     key={x + "-" + y}
-                                                    className="m-auto outline-none text-center w-full text-2xl font-bold"
+                                                    className="m-auto outline-none text-center w-full text-xl lg:text-2xl font-bold"
                                                     value={cells[y * 9 + x] ?? ""}
                                                     onChange={(e) => handleCellChange(y * 9 + x, e.target.value)}
                                                     tabIndex={y * 9 + x + 1}
