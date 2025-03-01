@@ -106,6 +106,7 @@ export default function SudokuPage() {
                                                 <input
                                                     key={x + "-" + y}
                                                     className="m-auto outline-none text-center w-full text-xl lg:text-2xl font-bold"
+                                                    type="tel"
                                                     value={cells[y * 9 + x] ?? ""}
                                                     onChange={(e) => handleCellChange(y * 9 + x, e.target.value)}
                                                     tabIndex={y * 9 + x + 1}
@@ -120,7 +121,7 @@ export default function SudokuPage() {
             <motion.div className="mx-auto flex flex-row gap-2" layout>
                 <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.6 }}>
                     <motion.button
-                        className="px-12 py-3 bg-background-muted rounded-lg text-xl font-semibold"
+                        className="px-12 py-3 bg-red-700/40 rounded-lg text-xl font-semibold"
                         onClick={handleClear}
                         disabled={isSolving}
                         whileHover={{ scale: 1.05 }}
@@ -131,7 +132,7 @@ export default function SudokuPage() {
                 </motion.div>
                 <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.7 }}>
                     <motion.button
-                        className="px-12 py-3 bg-background-muted rounded-lg text-xl font-semibold"
+                        className="px-12 py-3 bg-green-700/40 rounded-lg text-xl font-semibold"
                         onClick={handleSolve}
                         disabled={isSolving}
                         whileHover={{ scale: 1.05 }}

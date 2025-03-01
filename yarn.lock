@@ -1107,6 +1107,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"better-react-mathjax@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "better-react-mathjax@npm:2.1.0"
+  dependencies:
+    mathjax-full: "npm:^3.2.2"
+  peerDependencies:
+    react: ">=16.8"
+  checksum: 10c0/795aa833da031a00912b3e5634f79a797369cdb55cb18c6fc9a09e8e4c353e19110da0f6989f5169062b6b97a9b3725fbd793e329c3dbd025604530280acbf04
+  languageName: node
+  linkType: hard
+
 "brace-expansion@npm:^1.1.7":
   version: 1.1.11
   resolution: "brace-expansion@npm:1.1.11"
@@ -1250,6 +1261,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"commander@npm:9.2.0":
+  version: 9.2.0
+  resolution: "commander@npm:9.2.0"
+  checksum: 10c0/42eb2cf427fc5a1ca2ddf7ff6467d1a3cbec5c3e68dd61ead42eb01489ff068beadd4dc8303ab3cc48470d808372063c87fc8d9ed9e1be86365c3b0fc0a92732
+  languageName: node
+  linkType: hard
+
 "concat-map@npm:0.0.1":
   version: 0.0.1
   resolution: "concat-map@npm:0.0.1"
@@ -1278,6 +1296,7 @@ __metadata:
     "@types/node": "npm:^20"
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"
+    better-react-mathjax: "npm:^2.1.0"
     clsx: "npm:^2.1.1"
     eslint: "npm:^9"
     eslint-config-next: "npm:15.2.0"
@@ -1821,6 +1840,13 @@ __metadata:
   bin:
     eslint: bin/eslint.js
   checksum: 10c0/558edb25b440cd51825d66fed3e84f1081bd6f4cb2cf994e60ece4c5978fa0583e88b75faf187c1fc21688c4ff7072f12bf5f6d1be1e09a4d6af78cff39dc520
+  languageName: node
+  linkType: hard
+
+"esm@npm:^3.2.25":
+  version: 3.2.25
+  resolution: "esm@npm:3.2.25"
+  checksum: 10c0/8e60e8075506a7ce28681c30c8f54623fe18a251c364cd481d86719fc77f58aa055b293d80632d9686d5408aaf865ffa434897dc9fd9153c8b3f469fad23f094
   languageName: node
   linkType: hard
 
@@ -2791,10 +2817,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mathjax-full@npm:^3.2.2":
+  version: 3.2.2
+  resolution: "mathjax-full@npm:3.2.2"
+  dependencies:
+    esm: "npm:^3.2.25"
+    mhchemparser: "npm:^4.1.0"
+    mj-context-menu: "npm:^0.6.1"
+    speech-rule-engine: "npm:^4.0.6"
+  checksum: 10c0/48f55747bd91aa6bba905bab8654045e4d654a0a65869b1d446e25a89284ef37dc722c6c4a585e7fc14c5f87bb6954291f066e08e5a8245bb5ff0c4f4c54c8d4
+  languageName: node
+  linkType: hard
+
 "merge2@npm:^1.3.0":
   version: 1.4.1
   resolution: "merge2@npm:1.4.1"
   checksum: 10c0/254a8a4605b58f450308fc474c82ac9a094848081bf4c06778200207820e5193726dc563a0d2c16468810516a5c97d9d3ea0ca6585d23c58ccfff2403e8dbbeb
+  languageName: node
+  linkType: hard
+
+"mhchemparser@npm:^4.1.0":
+  version: 4.2.1
+  resolution: "mhchemparser@npm:4.2.1"
+  checksum: 10c0/5afe8b5ed918fda71a17875227050fd7e8e706305df28bd0beb5a7cd07886a393d041317e3c4b9105fc518ab75065b65886b2574cbd8dec49520de04d119e64a
   languageName: node
   linkType: hard
 
@@ -2830,6 +2875,13 @@ __metadata:
   version: 1.2.8
   resolution: "minimist@npm:1.2.8"
   checksum: 10c0/19d3fcdca050087b84c2029841a093691a91259a47def2f18222f41e7645a0b7c44ef4b40e88a1e58a40c84d2ef0ee6047c55594d298146d0eb3f6b737c20ce6
+  languageName: node
+  linkType: hard
+
+"mj-context-menu@npm:^0.6.1":
+  version: 0.6.1
+  resolution: "mj-context-menu@npm:0.6.1"
+  checksum: 10c0/2bf3564bb5cbd3915e14417e8df4a4e3013f1e281d431ee1e88976ae6529cc88e6eea7d9b3e217d1d79666f89070c3e1a193383ba9c7bf82d63075e616664ce9
   languageName: node
   linkType: hard
 
@@ -3597,6 +3649,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"speech-rule-engine@npm:^4.0.6":
+  version: 4.0.7
+  resolution: "speech-rule-engine@npm:4.0.7"
+  dependencies:
+    commander: "npm:9.2.0"
+    wicked-good-xpath: "npm:1.3.0"
+    xmldom-sre: "npm:0.1.31"
+  bin:
+    sre: bin/sre
+  checksum: 10c0/f9e17b5c6e09de41b67a1895f246706e4f36f8338575cd61f1653a16a0babad90db28365da350a10c4ab561a268d2cd3212cae9eff921556c274deac6e92df3c
+  languageName: node
+  linkType: hard
+
 "stable-hash@npm:^0.0.4":
   version: 0.0.4
   resolution: "stable-hash@npm:0.0.4"
@@ -3979,10 +4044,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"wicked-good-xpath@npm:1.3.0":
+  version: 1.3.0
+  resolution: "wicked-good-xpath@npm:1.3.0"
+  checksum: 10c0/6837e1027e75e2ad7fe0620d11def4c42235cbe6c649727258973d7d77c2c5066a5376595e0283d3ba8e2fa22deb3cfe7358db5a02a938bde273b55b9ac57832
+  languageName: node
+  linkType: hard
+
 "word-wrap@npm:^1.2.5":
   version: 1.2.5
   resolution: "word-wrap@npm:1.2.5"
   checksum: 10c0/e0e4a1ca27599c92a6ca4c32260e8a92e8a44f4ef6ef93f803f8ed823f486e0889fc0b93be4db59c8d51b3064951d25e43d434e95dc8c960cc3a63d65d00ba20
+  languageName: node
+  linkType: hard
+
+"xmldom-sre@npm:0.1.31":
+  version: 0.1.31
+  resolution: "xmldom-sre@npm:0.1.31"
+  checksum: 10c0/d4250a44949b7874661fc05cb708c84a1258871d63aae67271f6a0dec3003d301238f7b477ab7a31b828c9bdc1fc46f7469e81d04fe4a1bb6d3f527dfb602029
   languageName: node
   linkType: hard
 
