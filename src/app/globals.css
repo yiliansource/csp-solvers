@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
-@theme {
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
     --font-sans: var(--font-geist-sans);
     --font-mono: var(--font-geist-mono);
 
@@ -9,9 +11,17 @@
 }
 
 :root {
-    --background: #ee5050;
-    --background-muted: #cf3d3d;
-    --foreground: #ffffff;
+    --background: #f2f6d0;
+    --background-muted: #c1c3ad;
+
+    --foreground: #443627;
+}
+
+body.dark {
+    --background: #443627;
+    --background-muted: #74614c;
+
+    --foreground: #f2f6d0;
 }
 
 ::selection {
@@ -19,16 +29,12 @@
     color: var(--foreground);
 }
 
-/* @media (prefers-color-scheme: dark) {
-    :root {
-        --background: #0a0a0a;
-        --foreground: #ededed;
-    }
-} */
-
 body {
+    @apply transition-colors;
+
     color: var(--foreground);
     background: var(--background);
+
     font-family: Lexend, Helvetica, sans-serif;
 }
 
@@ -38,9 +44,13 @@ input[type="range"] {
 
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
 input[type="range"]::-webkit-slider-thumb {
-    @apply appearance-none cursor-pointer w-4 h-6 bg-white rounded-md;
+    @apply appearance-none cursor-pointer w-3 h-6 rounded-md transition-colors;
+
+    background-color: var(--foreground);
 }
 
 input[type="range"]::-moz-range-thumb {
-    @apply cursor-pointer w-4 h-6 bg-white rounded-md;
+    @apply cursor-pointer w-3 h-6 rounded-md transition-colors;
+
+    background-color: var(--foreground);
 }

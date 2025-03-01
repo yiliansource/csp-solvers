@@ -91,7 +91,7 @@ export default function SkyscrapersPage() {
                     className="mb-8 mx-auto flex flex-row items-center gap-6"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    transition={{ delay: 0.45 }}
+                    transition={{ delay: 0.2 }}
                     layout
                 >
                     <p className="text-xl font-bold">Size</p>
@@ -151,11 +151,14 @@ export default function SkyscrapersPage() {
                             }}
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
-                            transition={{ delay: i * 0.04 }}
+                            transition={{
+                                delay: (Math.floor(clueIndices[i] / (size + 2)) + (clueIndices[i] % (size + 2))) * 0.05,
+                            }}
                         >
                             <input
                                 className="m-auto text-xl lg:text-2xl font-bold w-8 h-8 text-center outline-none rounded-lg border-2 border-transparent focus:border-white transition-colors"
-                                value={clues[i] ?? "-"}
+                                type="tel"
+                                value={clue ?? "-"}
                                 onChange={(e) => handleHeightChange(i, e.target.value)}
                                 tabIndex={1 + i}
                             />
@@ -173,9 +176,9 @@ export default function SkyscrapersPage() {
                     ))}
                 </motion.div>
                 <motion.div className="mx-auto flex flex-row gap-2" layout>
-                    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.5 }}>
+                    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.4 }}>
                         <motion.button
-                            className="px-12 py-3 bg-background-muted rounded-lg text-xl font-semibold"
+                            className="px-12 py-3 bg-red-700/40 rounded-lg text-xl font-semibold"
                             onClick={handleClear}
                             disabled={isSolving}
                             whileHover={{ scale: 1.05 }}
@@ -184,9 +187,9 @@ export default function SkyscrapersPage() {
                             Clear
                         </motion.button>
                     </motion.div>
-                    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.4 }}>
+                    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.5 }}>
                         <motion.button
-                            className="px-12 py-3 bg-background-muted rounded-lg text-xl font-semibold"
+                            className="px-12 py-3 bg-green-700/40 rounded-lg text-xl font-semibold"
                             onClick={handleSolve}
                             disabled={isSolving}
                             whileHover={{ scale: 1.05 }}

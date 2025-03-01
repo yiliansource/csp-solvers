@@ -1,4 +1,5 @@
 import { LayoutTransition } from "@/layout-transition";
+import { ThemeToggle } from "@/lib/theme-toggle";
 import clsx from "clsx";
 import * as motion from "motion/react-client";
 import type { Metadata } from "next";
@@ -46,17 +47,21 @@ export default function RootLayout({
             >
                 <div className="grow flex flex-col w-full max-w-5xl mx-auto px-3">
                     <header className="h-32 lg:h-42 mb-2 select-none">
-                        <div className="h-full flex flex-row items-center">
+                        <div className="h-full flex flex-row items-center justify-between">
                             <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}>
                                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                    <p className="text-5xl font-bold">
+                                    <p className="text-5xl font-bold transition-colors">
                                         <Link href="/" tabIndex={-1}>
                                             CSP Solvers
                                         </Link>
                                     </p>
                                 </motion.div>
                             </motion.div>
-                            <div></div>
+                            <div>
+                                <div className="-translate-y-12 text-background-muted">
+                                    <ThemeToggle />
+                                </div>
+                            </div>
                         </div>
                     </header>
                     <motion.main className="relative flex flex-col grow mb-8" layout>

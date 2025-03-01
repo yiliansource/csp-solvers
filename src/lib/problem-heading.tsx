@@ -2,7 +2,7 @@ import * as motion from "motion/react-client";
 
 export function ProblemHeading({ title }: { title: string }) {
     return (
-        <motion.div className="mb-6 lg:mb-0 select-none">
+        <motion.div className="mb-6 lg:mb-0 select-none transition-colors">
             <motion.div
                 className="hidden lg:block absolute right-0 -top-26"
                 initial={{ scale: 0 }}
