@@ -36,7 +36,7 @@ export default function RootLayout({
                 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
                 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
                 <meta property="og:image" content="/apple-touch-icon.png" />
-                <meta name="theme-color" content="#ee5050" />
+                <meta name="theme-color" content="#f2f6d0" />
             </head>
             <body
                 className={clsx(
