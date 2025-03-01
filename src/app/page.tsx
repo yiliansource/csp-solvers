@@ -1,11 +1,14 @@
+"use client";
+
 import { metadatas as problemMetadatas } from "@/problems";
+import { MathJax, MathJaxContext } from "better-react-mathjax";
 import * as motion from "motion/react-client";
 import Link from "next/link";
 
 export default function Home() {
     return (
         <>
-            <div className="mb-12 text-lg *:mb-4 text-justify font-(family-name:--font-roboto)">
+            <div className="mb-6 text-lg *:mb-4 text-justify font-(family-name:--font-roboto)">
                 <p>
                     <b className="font-bold">Constraint satisfaction problems (CSPs)</b> are mathematical questions
                     defined as a set of objects whose state must satisfy a number of constraints or limitations. CSPs
@@ -18,24 +21,49 @@ export default function Home() {
                     in the browser. The source code is available on GitHub.
                 </p>
             </div>
-            <div className="flex flex-row flex-wrap gap-2 lg:gap-4">
-                {problemMetadatas.map((problem, i) => (
-                    <motion.div
-                        key={problem.key}
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 0.1 * i }}
-                        layout
-                    >
-                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                            <Link href={`/problems/${problem.key}`}>
-                                <div className="px-8 py-4 lg:px-12 lg:py-6 bg-background-muted rounded-lg">
-                                    <p className="text-lg lg:text-2xl font-bold">{problem.title}</p>
-                                </div>
-                            </Link>
+            <div className="mb-10">
+                <h3 className="mb-3 text-2xl font-bold">Take a look!</h3>
+                <div className="flex flex-row flex-wrap gap-2 lg:gap-4">
+                    {problemMetadatas.map((problem, i) => (
+                        <motion.div
+                            key={problem.key}
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ delay: 0.1 * i }}
+                            layout
+                        >
+                            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                <Link href={`/problems/${problem.key}`}>
+                                    <div className="px-8 py-4 lg:px-12 lg:py-6 bg-background-muted rounded-lg">
+                                        <p className="text-lg lg:text-2xl font-bold">{problem.title}</p>
+                                    </div>
+                                </Link>
+                            </motion.div>
                         </motion.div>
-                    </motion.div>
-                ))}
+                    ))}
+                </div>
+            </div>
+            <div className="text-lg font-(family-name:--font-roboto)">
+                <MathJaxContext>
+                    <p>
+                        Formally, a CSP is a defined as a triple{" "}
+                        <MathJax inline>{"\\( \\langle X, D, C \\rangle \\)"}</MathJax>, where
+                        <ul className="my-2 list-disc list-inside leading-loose">
+                            <li>
+                                <MathJax inline>{"\\( X = \\{ x_1, \\dots, x_n \\} \\)"}</MathJax> is a set of
+                                variables,
+                            </li>
+                            <li>
+                                <MathJax inline>{"\\( D = \\{ D_1, \\dots, D_n \\} \\)"}</MathJax> is a set of domains,
+                                and
+                            </li>
+                            <li>
+                                <MathJax inline>{"\\( C = \\{ C_1, \\dots, C_m \\} \\)"}</MathJax> is a set of
+                                constraints.
+                            </li>
+                        </ul>
+                    </p>
+                </MathJaxContext>
             </div>
         </>
     );
