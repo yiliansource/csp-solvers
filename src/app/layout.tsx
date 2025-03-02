@@ -58,7 +58,7 @@ export default function RootLayout({
                                 </motion.div>
                             </motion.div>
                             <div>
-                                <div className="-translate-y-12 text-background-muted">
+                                <div className="-translate-y-8 lg:-translate-y-12 text-background-muted">
                                     <ThemeToggle />
                                 </div>
                             </div>
@@ -75,8 +75,8 @@ export default function RootLayout({
                             {children}
                         </LayoutTransition>
                     </motion.main>
-                    <footer className="flex flex-row items-center justify-between justify-self-end text-background-muted select-none">
-                        <div className="py-8 text-xl lg:text-3xl font-bold">
+                    <footer className="h-14 lg:h-24 flex flex-row items-center justify-between justify-self-end text-background-muted select-none">
+                        <div className="text-xl lg:text-3xl font-bold">
                             <p>A collection of CSP solvers.</p>
                         </div>
                         <div className="text-2xl lg:text-3xl">

@@ -24,6 +24,7 @@ export default function SudokuPage() {
         ].flat(),
     );
     const [isSolving, setIsSolving] = useState(false);
+    const [noSolution, setNoSolution] = useState(false);
 
     const windoWidth = useWindowWidth();
 
@@ -38,6 +39,8 @@ export default function SudokuPage() {
                     draft[i] = null;
                 }),
             );
+            setNoSolution(false);
+
             return;
         }
 
@@ -49,14 +52,17 @@ export default function SudokuPage() {
                 draft[i] = number;
             }),
         );
+        setNoSolution(false);
     };
 
     const handleSolve = () => {
         setIsSolving(true);
+
         const initialAssignment = new Map<number, number>(
             cells.map((v, i) => [i, v]).filter(([, v]) => v !== null) as [number, number][],
         );
         const solution = solve(initialAssignment);
+
         if (solution) {
             setCells(solution);
 
@@ -66,11 +72,14 @@ export default function SudokuPage() {
                 size: 1,
             });
         }
+
+        setNoSolution(!solution);
         setIsSolving(false);
     };
 
     const handleClear = () => {
         setCells(Array.from<number | null>({ length: 9 ** 2 }).fill(null));
+        setNoSolution(false);
     };
 
     return (
@@ -118,7 +127,16 @@ export default function SudokuPage() {
                     )),
                 )}
             </motion.div>
-            <motion.div className="mx-auto flex flex-row gap-2" layout>
+            <motion.div className="mb-4 h-8 flex" layout>
+                <motion.div
+                    className="m-auto text-red-700 dark:text-red-400"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: noSolution ? 1 : 0 }}
+                >
+                    No solution could be found.
+                </motion.div>
+            </motion.div>
+            <motion.div className="mx-auto flex flex-row gap-2" animate={{ opacity: isSolving ? 0.5 : 1 }} layout>
                 <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.6 }}>
                     <motion.button
                         className="px-12 py-3 bg-red-700/40 rounded-lg text-xl font-semibold"

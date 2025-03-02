@@ -16,6 +16,7 @@ export default function SkyscrapersPage() {
     const [heights, setHeights] = useState<(number | null)[]>([]);
     const [clues, setClues] = useState<(number | null)[]>([]);
     const [isSolving, setIsSolving] = useState(false);
+    const [noSolution, setNoSolution] = useState(false);
     const windowWidth = useWindowWidth();
 
     useEffect(() => {
@@ -47,6 +48,8 @@ export default function SkyscrapersPage() {
                     draft[i] = null;
                 }),
             );
+            setNoSolution(false);
+
             return;
         }
 
@@ -58,15 +61,18 @@ export default function SkyscrapersPage() {
                 draft[i] = number;
             }),
         );
+        setNoSolution(false);
     };
 
     const handleSolve = () => {
         handleClear();
         setIsSolving(true);
+
         const solution = solve(
             size,
             clues.map((c) => c ?? 0),
         );
+
         if (solution) {
             setHeights(solution);
 
@@ -76,11 +82,14 @@ export default function SkyscrapersPage() {
                 size: 1,
             });
         }
+
+        setNoSolution(!solution);
         setIsSolving(false);
     };
 
     const handleClear = () => {
         setHeights(Array.from<number | null>({ length: size ** 2 }).fill(null));
+        setNoSolution(false);
     };
 
     return (
@@ -105,7 +114,7 @@ export default function SkyscrapersPage() {
                     />
                 </motion.div>
                 <motion.div
-                    className="mb-10 mx-auto grid gap-2 lg:gap-3 select-none"
+                    className="mb-6 mx-auto grid gap-2 lg:gap-3 select-none"
                     style={{
                         gridTemplateRows: `repeat(${size + 2}, ${cellSize})`,
                         gridTemplateColumns: `repeat(${size + 2}, ${cellSize})`,
@@ -175,7 +184,16 @@ export default function SkyscrapersPage() {
                         </motion.div>
                     ))}
                 </motion.div>
-                <motion.div className="mx-auto flex flex-row gap-2" layout>
+                <motion.div className="mb-4 h-8 flex" layout>
+                    <motion.div
+                        className="m-auto text-red-700 dark:text-red-400"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: noSolution ? 1 : 0 }}
+                    >
+                        No solution could be found.
+                    </motion.div>
+                </motion.div>
+                <motion.div className="mx-auto flex flex-row gap-2" animate={{ opacity: isSolving ? 0.5 : 1 }} layout>
                     <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.4 }}>
                         <motion.button
                             className="px-12 py-3 bg-red-700/40 rounded-lg text-xl font-semibold"
