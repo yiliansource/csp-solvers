@@ -2,13 +2,6 @@ import { hasDuplicates, range } from "@/lib/collections";
 import { getColumnIndices, getRowIndices } from "@/lib/grid";
 import { CSPSolver } from "@/lib/solver";
 
-import { ProblemMetadata } from "../problem";
-
-export const metadata: ProblemMetadata = {
-    title: "Sudoku",
-    key: "sudoku",
-};
-
 export function solve(initialCells: Map<number, number>): number[] | null {
     const variables = range(0, 9 ** 2);
     const domains = new Map<number, number[]>(variables.map((v) => [v, range(1, 9 + 1)]));

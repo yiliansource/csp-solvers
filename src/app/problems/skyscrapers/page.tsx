@@ -1,8 +1,8 @@
 "use client";
 
+import { ProblemHeading } from "@/components/problem-heading";
 import { range } from "@/lib/collections";
-import { ProblemHeading } from "@/lib/problem-heading";
-import { useWindowWidth } from "@/lib/use-window-width";
+import { useWindowWidth } from "@/lib/hooks/use-window-width";
 import { solve } from "@/problems/skyscrapers";
 import { produce } from "immer";
 import { AnimatePresence } from "motion/react";

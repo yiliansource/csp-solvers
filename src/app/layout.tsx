@@ -1,5 +1,5 @@
+import { ThemeToggle } from "@/components/theme-toggle";
 import { LayoutTransition } from "@/layout-transition";
-import { ThemeToggle } from "@/lib/theme-toggle";
 import clsx from "clsx";
 import * as motion from "motion/react-client";
 import type { Metadata } from "next";
